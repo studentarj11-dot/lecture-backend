@@ -25,4 +25,4 @@ EXPOSE 5000
 
 # Start with gunicorn (production WSGI server)
 # gunicorn handles the app; APScheduler runs inside the worker process
-CMD ["gunicorn", "--bind", "0.0.0.0:$PORT", "--workers", "1", "--timeout", "300", "app:app"]
+CMD ["sh", "-c", "gunicorn --bind 0.0.0.0:$PORT --workers 1 --timeout 300 app:app"]
