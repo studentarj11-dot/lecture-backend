@@ -166,16 +166,7 @@ def check_rss() -> None:
 
     logger.info("New video detected: '%s' (%s)", title, video_id)
 
-    # ── Shorts filter ──────────────────────────────────────────────────────
-    duration = get_video_duration(video_id)
-    if duration < MIN_DURATION_SEC:
-        logger.info(
-            "Skipping short video (%ds < %ds): %s", duration, MIN_DURATION_SEC, title
-        )
-        # Still mark as seen so we don't keep re-checking it
-        state["last_video_id"] = video_id
-        save_state(state)
-        return
+    # ── Shorts filter removed to prevent skipping valid videos if duration check fails ──
 
     # ── Download MP3 ───────────────────────────────────────────────────────
     filename = process_video(video_id)
